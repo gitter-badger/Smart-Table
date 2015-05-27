@@ -1,69 +1,153 @@
-[![Build Status](https://travis-ci.org/lorenzofox3/Smart-Table.svg?branch=master)](https://travis-ci.org/lorenzofox3/Smart-Table)
+# angular-seed — the seed for AngularJS apps
 
-# Smart Table
+[![Join the chat at https://gitter.im/joshball/angular-seed](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/joshball/angular-seed?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Smart table is a table module for angular js. It allows you to quickly compose your table in a declarative way including sorting, filtering, row selection pagination.
-It is lightweight (around 3kb minified) and has no other dependencies than Angular itself.
-Check the [documentation](http://lorenzofox3.github.io/smart-table-website/) website for more details
+This project is an application skeleton for a typical [AngularJS](http://angularjs.org/) web app.
+You can use it to quickly bootstrap your angular webapp projects and dev environment for these
+projects.
 
-## submitting an issue
+The seed contains AngularJS libraries, test libraries and a bunch of scripts all preconfigured for
+instant web development gratification. Just clone the repo (or download the zip/tarball), start up
+our (or yours) webserver and you are ready to develop and test your application.
 
-Please be responsible, the open source community is not there to guess your problem or to do your job. When submitting an issue try as much as possible to:
+The seed app doesn't do much, just shows how to wire two controllers and views together. You can
+check it out by opening app/index.html in your browser (might not work file `file://` scheme in
+certain browsers, see note below).
 
-1. search in the already existing issues or on [stackoverflow](http://stackoverflow.com/questions/tagged/smart-table?sort=newest&pageSize=30) if your issue has not been raised before.
+_Note: While angular is client-side-only technology and it's possible to create angular webapps that
+don't require a backend server at all, we recommend hosting the project files using a local
+webserver during development to avoid issues with security restrictions (sandbox) in browsers. The
+sandbox implementation varies between browsers, but quite often prevents things like cookies, xhr,
+etc to function properly when an html page is opened via `file://` scheme instead of `http://`._
 
-2. give a precise description mentionning angular version, smart-table version.
 
-3. give a way to reproduce your issue, the best would be with a <strong>running example</strong>, you can use [plunkr](http://plnkr.co/) (smart-table is the list of available packages). Note if you want to mimic ajax loading behaviour you can use [$timeout](https://docs.angularjs.org/api/ng/service/$timeout) angular service or [$httpBackend](https://docs.angularjs.org/api/ng/service/$httpBackend).
+## How to use angular-seed
 
-4. isolate your code sample on the probable issue to avoid pollution and noise.
+Clone the angular-seed repository and start hacking...
 
-5. Close your issue when a solution has been found (and share it with the community)
 
-Note that 80% of the open issues are actually not issues but "problem" due to developpers laziness or lack of investigation. These "issues" are a waste of time for us and especially if we have to setup a sample to reproduce the issue which those developpers could have done. Any open issue which does not fulfill this contract will be closed without investigation.
+### Running the app during development
 
-## Install
+You can pick one of these options:
 
-the easiest way is to run `bower install angular-smart-table`, then you just have to add the script and register the module `smart-table` to you application
+* serve this repository with your webserver
+* install node.js and run `scripts/web-server.js`
 
-## Test
+Then navigate your browser to `http://localhost:<port>/app/index.html` to see the app running in
+your browser.
 
-run `npm install` after you have installed the dependencies (`npm install` and `bower install`)
 
-## custom builds
+### Running the app in production
 
-smart-table is based around a main directive which generate a top level controller whose API can be accessed by sub directives
-(plugins), if you don't need some of these, simply edit the gulpfile (the pluginList variable) and run `gulp build`
+This really depends on how complex is your app and the overall infrastructure of your system, but
+the general rule is that all you need in production are all the files under the `app/` directory.
+Everything else should be omitted.
 
-## Older versions
+Angular apps are really just a bunch of static html, css and js files that just need to be hosted
+somewhere, where they can be accessed by browsers.
 
-Smart-Table used to be configuration based and if you rely on this version, you can still access the code on the [0.2.x](https://github.com/lorenzofox3/Smart-Table/tree/vx.2.x) branch. You will be able to find the documentation related to this version
-[here](https://github.com/lorenzofox3/smart-table-website) (simply open index.html in a browser).
+If your Angular app is talking to the backend server via xhr or other means, you need to figure
+out what is the best way to host the static files to comply with the same origin policy if
+applicable. Usually this is done by hosting the files by the backend server or through
+reverse-proxying the backend server(s) and a webserver(s).
 
-Note, I have closed all the issues related to these versions as people get confused when reading these issues and commented on them like it was related to the newer version. Feel free to reopen any of them (or open a new one), but don't forget to mention it is related to the older versions.
 
-## License
+### Running unit tests
 
-Smart Table module is under MIT license:
+We recommend using [jasmine](http://pivotal.github.com/jasmine/) and
+[Karma](http://karma-runner.github.io) for your unit tests/specs, but you are free
+to use whatever works for you.
 
-> Copyright (C) 2014 Laurent Renard.
->
-> Permission is hereby granted, free of charge, to any person
-> obtaining a copy of this software and associated documentation files
-> (the "Software"), to deal in the Software without restriction,
-> including without limitation the rights to use, copy, modify, merge,
-> publish, distribute, sublicense, and/or sell copies of the Software,
-> and to permit persons to whom the Software is furnished to do so,
-> subject to the following conditions:
->
-> The above copyright notice and this permission notice shall be
-> included in all copies or substantial portions of the Software.
->
-> THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-> EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-> MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-> NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
-> BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
-> ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-> CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-> SOFTWARE.
+Requires [node.js](http://nodejs.org/), Karma (`sudo npm install -g karma`) and a local
+or remote browser.
+
+* start `scripts/test.sh` (on windows: `scripts\test.bat`)
+  * a browser will start and connect to the Karma server (Chrome is default browser, others can be captured by loading the same url as the one in Chrome or by changing the `config/karma.conf.js` file)
+* to run or re-run tests just change any of your source or test javascript files
+
+
+### End to end testing
+
+Angular ships with a baked-in end-to-end test runner that understands angular, your app and allows
+you to write your tests with jasmine-like BDD syntax.
+
+Requires a webserver, node.js + `./scripts/web-server.js` or your backend server that hosts the angular static files.
+
+Check out the
+[end-to-end runner's documentation](http://docs.angularjs.org/guide/dev_guide.e2e-testing) for more
+info.
+
+* create your end-to-end tests in `test/e2e/scenarios.js`
+* serve your project directory with your http/backend server or node.js + `scripts/web-server.js`
+* to run do one of:
+  * open `http://localhost:port/test/e2e/runner.html` in your browser
+  * run the tests from console with [Karma](http://karma-runner.github.io) via
+    `scripts/e2e-test.sh` or `script/e2e-test.bat`
+
+### Continuous Integration
+
+CloudBees have provided a CI/deployment setup:
+
+<a href="https://grandcentral.cloudbees.com/?CB_clickstart=https://raw.github.com/CloudBees-community/angular-js-clickstart/master/clickstart.json"><img src="https://d3ko533tu1ozfq.cloudfront.net/clickstart/deployInstantly.png"/></a>
+
+If you run this, you will get a cloned version of this repo to start working on in a private git repo, 
+along with a CI service (in Jenkins) hosted that will run unit and end to end tests in both Firefox and Chrome.
+
+### Receiving updates from upstream
+
+When we upgrade angular-seed's repo with newer angular or testing library code, you can just
+fetch the changes and merge them into your project with git.
+
+
+## Directory Layout
+
+    app/                --> all of the files to be used in production
+      css/              --> css files
+        app.css         --> default stylesheet
+      img/              --> image files
+      index.html        --> app layout file (the main html template file of the app)
+      index-async.html  --> just like index.html, but loads js files asynchronously
+      js/               --> javascript files
+        app.js          --> application
+        controllers.js  --> application controllers
+        directives.js   --> application directives
+        filters.js      --> custom angular filters
+        services.js     --> custom angular services
+      lib/              --> angular and 3rd party javascript libraries
+        angular/
+          angular.js        --> the latest angular js
+          angular.min.js    --> the latest minified angular js
+          angular-*.js      --> angular add-on modules
+          version.txt       --> version number
+      partials/             --> angular view partials (partial html templates)
+        partial1.html
+        partial2.html
+
+    config/karma.conf.js        --> config file for running unit tests with Karma
+    config/karma-e2e.conf.js    --> config file for running e2e tests with Karma
+
+    scripts/            --> handy shell/js/ruby scripts
+      e2e-test.sh       --> runs end-to-end tests with Karma (*nix)
+      e2e-test.bat      --> runs end-to-end tests with Karma (windows)
+      test.bat          --> autotests unit tests with Karma (windows)
+      test.sh           --> autotests unit tests with Karma (*nix)
+      web-server.js     --> simple development webserver based on node.js
+
+    test/               --> test source files and libraries
+      e2e/              -->
+        runner.html     --> end-to-end test runner (open in your browser to run)
+        scenarios.js    --> end-to-end specs
+      lib/
+        angular/                --> angular testing libraries
+          angular-mocks.js      --> mocks that replace certain angular services in tests
+          angular-scenario.js   --> angular's scenario (end-to-end) test runner library
+          version.txt           --> version file
+      unit/                     --> unit level specs/tests
+        controllersSpec.js      --> specs for controllers
+        directivessSpec.js      --> specs for directives
+        filtersSpec.js          --> specs for filters
+        servicesSpec.js         --> specs for services
+
+## Contact
+
+For more information on AngularJS please check out http://angularjs.org/
